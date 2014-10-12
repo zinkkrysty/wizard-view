@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>wizard-view Demo</title>
+
+  <script src="../platform/platform.js"></script>
+  <link rel="import" href="wizard-view.html">
+</head>
+
+<body unresolved>
+  <p>An example of wizard-view looks like this:</p>
+
+  <wizard-view id="element">
+    <wizard-step active>
+      <p>The journey now begins!</p>
+      <p>
+        <button class="proceed-trigger">Continue...</button>
+      </p>
+    </wizard-step>
+    <wizard-step>
+      <p>
+        On the floor there are
+        <input type="number" />
+        apples.
+      </p>
+      <p>
+        <button class="proceed-trigger">Eat the apples</button>
+      </p>
+    </wizard-step>
+    <wizard-step>
+      <p>You found the golden apple!</p>
+      <p>The journey has ended</p>
+    </wizard-step>
+  </wizard-view>
+</body>
+</html>

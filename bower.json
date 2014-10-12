@@ -1,0 +1,9 @@
+{
+  "name": "wizard-view",
+  "version": "0.0.1",
+  "description": "UI Pattern to help user progress through successive steps",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}
