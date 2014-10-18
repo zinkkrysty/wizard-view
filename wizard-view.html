@@ -1,14 +1,30 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-##### Example
+`<wizard-view>` allows you to advance through multiple screens/views. It has
+minimal styles applied for functional purposes (show and hide).
 
-    <wizard-view></wizard-view>
+To define its steps use the `<wizard-step>` elements inside of `<wizard-view>`.
+If you want to trigger the next view by tapping an element in
+`<wizard-step>`, assign it the `proceed-trigger` class.
+
+Example:
+
+    <wizard-view>
+
+      <wizard-step active>
+        <span>First step</span>
+        <a href="#" class="proceed-trigger">Next</a>
+      </wizard-step>
+
+      <wizard-step>Second step</wizard-step>
+
+    </wizard-view>
 
 @element wizard-view
 @blurb Element providing solution to [...].
 @status [...]
-@homepage https://.../wizard-view
+@homepage http://zinkkrysty.github.io/wizard-view/components/wizard-view/
 -->
 <polymer-element name="wizard-step" attributes="active completed">
   <template>
@@ -25,6 +41,13 @@
 
   <script>
     Polymer({
+      /**
+      * Determines which step is the active one
+      *
+      * @attribute active
+      * @type boolean
+      * @default false
+      */
       active: false,
       completed: false,
 
@@ -40,11 +63,11 @@
 
       proceed: function(){
         this.completed = true;
-        console.log("proceeding...");
         this.fire('wizard-step-done');
       },
 
       activeChanged: function(){
+        // Sets the attribute on the element to follow the property (useful for styling)
         if(this.active)
           this.setAttribute('active', '')
         else
@@ -57,8 +80,11 @@
 
 <polymer-element name="wizard-view">
   <template>
-    <link rel="stylesheet" href="wizard-view.css">
-
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
     <div class="steps" on-wizard-step-done="{{proceed}}">
       <content select="wizard-step"></content>
     </div>
@@ -68,18 +94,14 @@
     Polymer({
 
       ready: function() {
-        console.log('Wizard is ready to cast its first spell!');
         this.steps = this.querySelectorAll('wizard-step');
-        console.log(this.steps);
       },
 
       proceed: function() {
-        console.log('proceeding from wizard');
         this.changeActiveStep();
       },
 
       changeActiveStep: function() {
-        console.log('changing active step');
         var currentActiveStep = this.querySelector('wizard-step[active]');
         currentActiveStep.active = null;
         var nextStep = currentActiveStep.nextElementSibling;
