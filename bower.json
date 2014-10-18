@@ -1,0 +1,7 @@
+{
+  "name": "wizard-view#gh-pages",
+  "private": true,
+  "dependencies": {
+    "wizard-view": "zinkkrysty/wizard-view#master"
+  }
+}

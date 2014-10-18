@@ -1,0 +1,19 @@
+{
+  "name": "wizard-view",
+  "description": "UI Pattern to help user progress through successive steps",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  },
+  "homepage": "https://github.com/zinkkrysty/wizard-view",
+  "_release": "21ecc04194",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "21ecc0419445c9d5471553731730ca9d43ee072d"
+  },
+  "_source": "git://github.com/zinkkrysty/wizard-view.git",
+  "_target": "master",
+  "_originalSource": "zinkkrysty/wizard-view",
+  "_direct": true
+}

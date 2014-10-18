@@ -1,0 +1,92 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+##### Example
+
+    <wizard-view></wizard-view>
+
+@element wizard-view
+@blurb Element providing solution to [...].
+@status [...]
+@homepage https://.../wizard-view
+-->
+<polymer-element name="wizard-step" attributes="active completed">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+      :host([active]) {
+        display: block;
+      }
+    </style>
+    <content></content>
+  </template>
+
+  <script>
+    Polymer({
+      active: false,
+      completed: false,
+
+      domReady: function(){
+        this.proceedTrigger = this.querySelector('.proceed-trigger');
+        var parent = this;
+        if(this.proceedTrigger) {
+          this.proceedTrigger.onclick = function(){
+            parent.proceed();
+          };
+        }
+      },
+
+      proceed: function(){
+        this.completed = true;
+        console.log("proceeding...");
+        this.fire('wizard-step-done');
+      },
+
+      activeChanged: function(){
+        if(this.active)
+          this.setAttribute('active', '')
+        else
+          this.removeAttribute('active');
+      }
+    });
+  </script>
+</polymer-element>
+
+
+<polymer-element name="wizard-view">
+  <template>
+    <link rel="stylesheet" href="wizard-view.css">
+
+    <div class="steps" on-wizard-step-done="{{proceed}}">
+      <content select="wizard-step"></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      ready: function() {
+        console.log('Wizard is ready to cast its first spell!');
+        this.steps = this.querySelectorAll('wizard-step');
+        console.log(this.steps);
+      },
+
+      proceed: function() {
+        console.log('proceeding from wizard');
+        this.changeActiveStep();
+      },
+
+      changeActiveStep: function() {
+        console.log('changing active step');
+        var currentActiveStep = this.querySelector('wizard-step[active]');
+        currentActiveStep.active = null;
+        var nextStep = currentActiveStep.nextElementSibling;
+        if(nextStep) {
+          nextStep.active = true;
+        }
+      },
+    });
+  </script>
+</polymer-element>
